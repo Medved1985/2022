@@ -1,0 +1,47 @@
+<nz-table #basicTable [nzData]="listOfData" *ngIf="!param.id">
+  <thead>
+  <tr>
+    <th>Ф.И.О.</th>
+    <th>Должность</th>
+    <th>Департамент</th>
+    <th>Роль пользователя</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td><a routerLink="/user/{{ data.key }}">{{ data.name }}</a></td>
+    <td>{{ data.position }}</td>
+    <td>{{ data.department }}</td>
+    <td>{{ data.role }}</td>
+  </tr>
+  </tbody>
+  
+  <!-- добавление пользователя -->
+  <button style="margin: 30px 0px 0px 15px; position: absolute;"
+   nz-button nzType="primary"
+   routerLink="/adduser"
+   >Добавить пользователя</button> 
+   <!-- <nz-collapse style="width: 25vw; margin: 30px 0px 0px 15px; position: absolute;">
+    <nz-collapse-panel
+    [nzShowArrow]="false"    
+    >
+      <div style="display: grid;">
+        <input style="display: flex; margin: 10px 0 10px 0; border: 1px solid #1890ffbd;padding: 5px 10px 5px 10px;" type="text" placeholder="ФИО">
+        <input style="display: flex; margin: 10px 0 10px 0; border: 1px solid #1890ffbd;padding: 5px 10px 5px 10px;" type="text" placeholder="Должность">
+        <input style="display: flex; margin: 10px 0 10px 0; border: 1px solid #1890ffbd;padding: 5px 10px 5px 10px; " type="text" placeholder="Департамент">
+        <input style="display: flex; margin: 10px 0 10px 0; border: 1px solid #1890ffbd;padding: 5px 10px 5px 10px;" type="text" placeholder="Роль ">
+      </div>
+      <div style="display: flex; margin: 10px 0 10px 0 ">
+        <button nz-button nzType="danger">Отмена</button>
+        <button nz-button nzType="primary" style="margin-left: 50px;">Добавить</button>
+      </div>
+    </nz-collapse-panel>
+  </nz-collapse> -->
+
+</nz-table>
+
+<div *ngIf="param.id">
+  <app-card-view [data]="data" [breadcrumb]="breadcrumbData" url="user" *ngIf="!isEdit"></app-card-view>
+  <app-card-edit *ngIf="isEdit" [data]="data2"></app-card-edit>
+  
+</div>
